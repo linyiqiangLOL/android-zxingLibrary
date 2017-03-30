@@ -250,4 +250,11 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         this.analyzeCallback = analyzeCallback;
     }
 
+    public void restartCamera() {
+        if (handler != null) {
+            //这个方法是私有的，设置成public，需要重复扫描时，用fragment调用这个方法就可以了
+            handler.restartPreviewAndDecodeNoDrawfinder();
+        }
+    }
+
 }

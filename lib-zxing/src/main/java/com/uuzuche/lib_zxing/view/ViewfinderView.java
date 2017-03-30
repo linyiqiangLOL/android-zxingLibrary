@@ -24,12 +24,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PixelFormat;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.google.zxing.ResultPoint;
@@ -74,6 +71,7 @@ public final class ViewfinderView extends View {
 
     /**
      * 初始化内部框的大小
+     *
      * @param context
      * @param attrs
      */
@@ -192,7 +190,7 @@ public final class ViewfinderView extends View {
             scanLineTop = frame.top;
         }
 
-        if (scanLineTop >= frame.bottom - 30) {
+        if (scanLineTop + SCAN_VELOCITY >= frame.bottom - 30) {
             scanLineTop = frame.top;
         } else {
             scanLineTop += SCAN_VELOCITY;

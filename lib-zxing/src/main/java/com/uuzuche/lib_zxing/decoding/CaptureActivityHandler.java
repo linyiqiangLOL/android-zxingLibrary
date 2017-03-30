@@ -28,7 +28,6 @@ import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.uuzuche.lib_zxing.R;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.view.ViewfinderResultPointCallback;
@@ -127,6 +126,14 @@ public final class CaptureActivityHandler extends Handler {
             CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
             CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
             fragment.drawViewfinder();
+        }
+    }
+
+    public void restartPreviewAndDecodeNoDrawfinder() {
+        if (state == State.SUCCESS) {
+            state = State.PREVIEW;
+            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+            CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
         }
     }
 
